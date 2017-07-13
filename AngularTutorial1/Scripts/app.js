@@ -41,6 +41,8 @@ var ListCtrl = function ($scope, $location, Todo) {
 
     $scope.search = function () {
 
+        $scope.loading = true;
+
         Todo.query({
             q: $scope.query,
             sort: $scope.sort_order,
@@ -51,7 +53,7 @@ var ListCtrl = function ($scope, $location, Todo) {
             function (data) {
                 $scope.more = data.length === 20;
                 $scope.items = $scope.items.concat(data);
-
+                $scope.loading = false;
             });
     };
 
